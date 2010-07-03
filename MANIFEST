@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST
+Makefile.PL
+lib/Dpchrist/Debug.pm
+t/0_compile_modules.t
+t/1_Dpchrist-Debug.t
+t/2_debug_enabled.t
+t/3_ddump.t
+t/3_dprint.t
+t/9_pod.t
+t/9_prereq.t
+META.yml                                 Module meta-data (added by MakeMaker)

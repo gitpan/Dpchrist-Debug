@@ -1,0 +1,18 @@
+--- #YAML:1.0
+name:                Dpchrist-Debug
+version:             1.038
+abstract:            debugging convenience routines
+license:             ~
+author:              
+    - David Paul Christensen <dpchrist@holgerdanske.com>
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Capture::Tiny:                 0
+    Dpchrist::File::Append:        1.025
+    Dpchrist::Tag:                 1.029
+    feature:                       0
+    File::Slurp:                   0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3
