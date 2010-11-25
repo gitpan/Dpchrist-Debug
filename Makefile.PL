@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Makefile.PL,v 1.19 2010-11-25 02:16:24 dpchrist Exp $
+# $Id: Makefile.PL,v 1.20 2010-11-25 18:37:34 dpchrist Exp $
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -23,6 +23,7 @@ use ExtUtils::MakeMaker;
 use Dpchrist::Module::MakefilePL (
     -mcpani		=> $ENV{CPAN_AUTHORID},
     -pod2html	 	=> qw( lib/Dpchrist/Debug.pm ),
+    -readme	 	=> qw( lib/Dpchrist/Debug.pm ),
     -release		=> $ENV{RELEASE_ROOT},
 );
 
@@ -31,8 +32,9 @@ WriteMakefile(
     VERSION_FROM	=> 'lib/Dpchrist/Debug.pm', # finds $VERSION
     PREREQ_PM		=> {
 	'Capture::Tiny'			=> 0,
-	'Dpchrist::File::Append'	=> 1.025,
-	'Dpchrist::Tag'			=> 1.029,
+	'Dpchrist::File::Append'	=> 1.028,
+	'Dpchrist::Module'		=> 1.021,
+	'Dpchrist::Tag'			=> 1.032,
 	'File::Slurp'			=> 0,
 	'feature'			=> 0,
     },
