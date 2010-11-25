@@ -1,4 +1,4 @@
-# $Id: 3_dprint.t,v 1.11 2009-11-30 01:19:08 dpchrist Exp $
+# $Id: 3_dprint.t,v 1.12 2010-11-25 02:16:24 dpchrist Exp $
 
 use Test::More		tests => 6;
 
@@ -22,20 +22,25 @@ my @m = ('hello,', 'world!');
 my @r;
 my $u;
 my $v;
+my ($stdout, $stderr);
+
 
 $ENV{DEBUG} = undef;
 
-@r = eval {
-    dprint @m;
+($stdout, $stderr) = capture {
+    @r = eval {
+	dprint @m;
+    };
 };
 ok(								#     1
     @r eq 2
     && $r[0] eq $m[0]
-    && $r[1] eq $m[1],
+    && $r[1] eq $m[1]
+    && $stderr =~ /t.3.dprint.t \d+ .eval.   hello, world!/,
     'verify return value when DEBUG off'
 ) or confess join(' ',
-    Data::Dumper->Dump([\@r, $@],
-		     [qw(*r   @)]),
+    Data::Dumper->Dump([\@r, $@, $stdout, $stderr],
+		     [qw(*r   @   stdout   stderr)]),
 );
 
 $f = join '~', __FILE__, __LINE__, 'tmp';
@@ -46,7 +51,7 @@ if (-e $g) { unlink $g or die $! }
 
 $ENV{DEBUG} = join ':', $f, $g, '*STDERR';
 
-my ($stdout, $stderr) = capture {
+($stdout, $stderr) = capture {
     @r = eval {
     	dprint @m;
     }

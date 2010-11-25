@@ -1,4 +1,4 @@
-# $Id: 3_ddump.t,v 1.2 2009-11-30 01:19:08 dpchrist Exp $
+# $Id: 3_ddump.t,v 1.3 2010-11-25 02:16:24 dpchrist Exp $
 
 use Test::More		tests => 8;
 
@@ -22,6 +22,8 @@ my @m = ('hello,', 'world!');
 my @r;
 my $u;
 my $v;
+
+my ($stdout, $stderr);
 
 
 @r = eval {
@@ -47,17 +49,20 @@ ok(								#     2
 
 $ENV{DEBUG} = undef;
 
-@r = eval {
-    ddump @m, [$f], [qw(f)];
+($stdout,$stderr) = capture {
+    @r = eval {
+	ddump @m, [$f], [qw(f)];
+    };
 };
 ok(								#     3
     @r eq 2
     && $r[0] eq $m[0]
-    && $r[1] eq $m[1],
+    && $r[1] eq $m[1]
+    && $stderr =~ /t.3.ddump.t \d+ .eval.   hello, world! \$f = undef/,
     'verify return value when DEBUG off'
 ) or confess join(' ',
-    Data::Dumper->Dump([\@r, $@],
-		     [qw(*r   @)]),
+    Data::Dumper->Dump([\@r, $@, $stdout, $stderr],
+		     [qw(*r   @   stdout   stderr)]),
 );
 
 $f = join '~', __FILE__, __LINE__, 'tmp';
@@ -68,7 +73,7 @@ if (-e $g) { unlink $g or die $! }
 
 $ENV{DEBUG} = join ':', $f, $g, '*STDERR';
 
-my ($stdout, $stderr) = capture {
+($stdout, $stderr) = capture {
     @r = eval {
     	ddump @m, [$f], [qw(f)];
     }

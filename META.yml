@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-Debug
-version:            1.039
+version:            1.040
 abstract:           debugging convenience routines
 author:
     - David Paul Christensen <dpchrist@holgerdanske.com>

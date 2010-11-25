@@ -1,12 +1,11 @@
 #######################################################################
-# $Id: Debug.pm,v 1.39 2010-11-06 01:05:06 dpchrist Exp $
+# $Id: Debug.pm,v 1.40 2010-11-25 02:16:24 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
 
 package Dpchrist::Debug;
 
-use 5.010000;
 use strict;
 use warnings;
 
@@ -36,7 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.39 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.40 $ =~ /(\d+)/g);
 
 #my @used_only_once_workaround = (
 #    $main::debug,
