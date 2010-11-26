@@ -2,7 +2,7 @@ NAME
     Dpchrist::Debug - debugging convenience routines
 
 DESCRIPTION
-    This documentation describes module revision $Revision: 1.41 $.
+    This documentation describes module revision $Revision: 1.42 $.
 
     This is alpha test level software and may change or disappear at any
     time.

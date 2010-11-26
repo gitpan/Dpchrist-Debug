@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Debug.pm,v 1.41 2010-11-25 18:37:34 dpchrist Exp $
+# $Id: Debug.pm,v 1.42 2010-11-26 20:42:06 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -35,7 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.41 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.42 $ =~ /(\d+)/g);
 
 #my @used_only_once_workaround = (
 #    $main::debug,
@@ -50,7 +50,7 @@ Dpchrist::Debug - debugging convenience routines
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.41 $.
+This documentation describes module revision $Revision: 1.42 $.
 
 
 This is alpha test level software
