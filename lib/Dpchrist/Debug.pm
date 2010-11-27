@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Debug.pm,v 1.43 2010-11-27 03:37:57 dpchrist Exp $
+# $Id: Debug.pm,v 1.44 2010-11-27 07:37:14 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -35,7 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.43 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.44 $ =~ /(\d+)/g);
 
 #######################################################################
 
@@ -46,7 +46,7 @@ Dpchrist::Debug - debugging convenience routines
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.43 $.
+This documentation describes module revision $Revision: 1.44 $.
 
 
 This is alpha test level software

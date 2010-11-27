@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-Debug
-version:            1.043
+version:            1.044
 abstract:           debugging convenience routines
 author:
     - David Paul Christensen <dpchrist@holgerdanske.com>
@@ -12,9 +12,9 @@ build_requires:
     ExtUtils::MakeMaker:  0
 requires:
     Capture::Tiny:        0
-    Dpchrist::File::Append:  1.03
-    Dpchrist::Module:     1.025
-    Dpchrist::Tag:        1.034
+    Dpchrist::File::Append:  1.031
+    Dpchrist::Module:     1.026
+    Dpchrist::Tag:        1.035
     feature:              0
     File::Slurp:          0
     Getopt::Long:         0
