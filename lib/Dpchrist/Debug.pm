@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Debug.pm,v 1.42 2010-11-26 20:42:06 dpchrist Exp $
+# $Id: Debug.pm,v 1.43 2010-11-27 03:37:57 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -35,11 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.42 $ =~ /(\d+)/g);
-
-#my @used_only_once_workaround = (
-#    $main::debug,
-#);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.43 $ =~ /(\d+)/g);
 
 #######################################################################
 
@@ -50,7 +46,7 @@ Dpchrist::Debug - debugging convenience routines
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.42 $.
+This documentation describes module revision $Revision: 1.43 $.
 
 
 This is alpha test level software
@@ -231,18 +227,32 @@ See 'perldoc Export' for everything in between.
 
 =head1 INSTALLATION
 
-    perl Makefile.PL
-    make
-    make test
-    make install
+Old school:
+
+    $ perl Makefile.PL
+    $ make
+    $ make test
+    $ make install
+
+Minimal:
+
+    $ cpan Dpchrist::Debug
+
+Complete:
+
+    $ cpan Bundle::Dpchrist
+
+The following warning may be safely ignored:
+
+    Can't locate Dpchrist/Module/MakefilePL.pm in @INC (@INC contains: /
+    etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /us
+    r/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10
+    /usr/local/lib/site_perl .) at Makefile.PL line 22.
 
 
-=head1 DEPENDENCIES
+=head2 PREREQUISITES
 
-    Capture::Tiny
-    Dpchrist::File::Append
-    Dpchrist::Tag
-    File::Slurp
+See Makefile.PL in the source distribution root directory.
 
 
 =head1 AUTHOR
