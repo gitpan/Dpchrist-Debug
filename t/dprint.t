@@ -1,4 +1,4 @@
-# $Id: 3_dprint.t,v 1.12 2010-11-25 02:16:24 dpchrist Exp $
+# $Id: dprint.t,v 1.13 2010-12-01 18:14:54 dpchrist Exp $
 
 use Test::More		tests => 6;
 
@@ -36,7 +36,7 @@ ok(								#     1
     @r eq 2
     && $r[0] eq $m[0]
     && $r[1] eq $m[1]
-    && $stderr =~ /t.3.dprint.t \d+ .eval.   hello, world!/,
+    && $stderr =~ /t.dprint.t \d+ .eval.   hello, world!/,
     'verify return value when DEBUG off'
 ) or confess join(' ',
     Data::Dumper->Dump([\@r, $@, $stdout, $stderr],

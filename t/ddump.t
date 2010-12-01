@@ -1,4 +1,4 @@
-# $Id: 3_ddump.t,v 1.3 2010-11-25 02:16:24 dpchrist Exp $
+# $Id: ddump.t,v 1.4 2010-12-01 18:14:54 dpchrist Exp $
 
 use Test::More		tests => 8;
 
@@ -58,7 +58,7 @@ ok(								#     3
     @r eq 2
     && $r[0] eq $m[0]
     && $r[1] eq $m[1]
-    && $stderr =~ /t.3.ddump.t \d+ .eval.   hello, world! \$f = undef/,
+    && $stderr =~ /t.ddump.t \d+ .eval.   hello, world! \$f = undef/,
     'verify return value when DEBUG off'
 ) or confess join(' ',
     Data::Dumper->Dump([\@r, $@, $stdout, $stderr],

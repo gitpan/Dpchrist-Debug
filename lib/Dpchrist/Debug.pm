@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Debug.pm,v 1.44 2010-11-27 07:37:14 dpchrist Exp $
+# $Id: Debug.pm,v 1.46 2010-12-01 18:14:54 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -23,7 +23,7 @@ use Dpchrist::Tag		qw( :all );
 our %EXPORT_TAGS = ( 'all' => [ qw(
     ddump
     dprint
-    debug_enabled
+    debug_dest
 ) ] );
 
 our @EXPORT_OK = (
@@ -35,7 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.44 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.46 $ =~ /(\d+)/g);
 
 #######################################################################
 
@@ -46,18 +46,21 @@ Dpchrist::Debug - debugging convenience routines
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.44 $.
+This documentation describes module revision $Revision: 1.46 $.
 
 
 This is alpha test level software
 and may change or disappear at any time.
 
+=cut
+
+#######################################################################
 
 =head2 SUBROUTINES
 
 =cut
 
-#######################################################################
+#======================================================================
 
 =head3 ddump
 
@@ -90,7 +93,7 @@ sub ddump
 	unless defined $ra1 && ref $ra1 eq 'ARRAY'
 	    && defined $ra2 && ref $ra2 eq 'ARRAY';
 
-    my $dest = debug_enabled();
+    my $dest = debug_dest();
     goto DONE unless $dest;
 
     my $entry = join ' ', __TAG1__, @_,
@@ -106,11 +109,11 @@ sub ddump
     return @_;
 }
 
-#######################################################################
+#======================================================================
 
-=head3 debug_enabled
+=head3 debug_dest
 
-    debug_enabled
+    debug_dest
 
 Walks the call stack (outer loop)
 and inheritance chain (inner loop) recursively,
@@ -123,7 +126,7 @@ or '*STDERR' if no defined value was found.
 
 #----------------------------------------------------------------------
 
-sub debug_enabled()
+sub debug_dest()
 {
     my $level = 0;	# call stack level
     my $limit = 100;	# runaway loop limit
@@ -170,7 +173,7 @@ sub debug_enabled()
     return $1;
 }
 
-#######################################################################
+#======================================================================
 
 =head3 dprint
 
@@ -179,7 +182,7 @@ sub debug_enabled()
 
 Appends LIST to file name and/or file handle destinations
 specified as colon-delimited list
-returned by debug_enabled(),
+returned by debug_dest(),
 and returns LIST.
 
 Calls warn() if Dpchrist::File::Append::fappend() fails.
@@ -190,7 +193,7 @@ Calls warn() if Dpchrist::File::Append::fappend() fails.
 
 sub dprint
 {
-    my $dest = debug_enabled();
+    my $dest = debug_dest();
     goto DONE unless $dest;
 
     my $entry = join ' ', __TAG1__, @_;
@@ -210,6 +213,7 @@ sub dprint
 #----------------------------------------------------------------------
 
 1;
+
 __END__
 
 #######################################################################

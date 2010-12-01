@@ -1,4 +1,4 @@
-# $Id: 2_debug_enabled.t,v 1.17 2010-07-03 00:24:42 dpchrist Exp $
+# $Id: debug_dest.t,v 1.18 2010-12-01 18:14:54 dpchrist Exp $
 
 use Test::More			tests => 13;
 
@@ -6,14 +6,14 @@ package Foo;
 use strict;
 use warnings;
 use Dpchrist::Debug		qw( :all );
-sub foo { return debug_enabled; }
+sub foo { return debug_dest; }
 
 package Bar;
 use base qw( Foo );
 use strict;
 use warnings;
 use Dpchrist::Debug		qw( :all );
-sub bar { return debug_enabled; }
+sub bar { return debug_dest; }
 
 package Baz;
 use strict;

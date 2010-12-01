@@ -2,7 +2,7 @@ NAME
     Dpchrist::Debug - debugging convenience routines
 
 DESCRIPTION
-    This documentation describes module revision $Revision: 1.44 $.
+    This documentation describes module revision $Revision: 1.46 $.
 
     This is alpha test level software and may change or disappear at any
     time.
@@ -19,8 +19,8 @@ DESCRIPTION
 
     Calls confess() on error.
 
-   debug_enabled
-        debug_enabled
+   debug_dest
+        debug_dest
 
     Walks the call stack (outer loop) and inheritance chain (inner loop)
     recursively, examining the __PACKAGE__::DEBUG environment variable,
@@ -32,7 +32,7 @@ DESCRIPTION
         dprint
 
     Appends LIST to file name and/or file handle destinations specified as
-    colon-delimited list returned by debug_enabled(), and returns LIST.
+    colon-delimited list returned by debug_dest(), and returns LIST.
 
     Calls warn() if Dpchrist::File::Append::fappend() fails.
 

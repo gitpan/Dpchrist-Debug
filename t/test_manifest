@@ -1,0 +1,7 @@
+test-compile-all_pm_files_ok.t
+Dpchrist-Debug.t
+debug_dest.t
+ddump.t
+dprint.t
+test-pod-all_pod_files_ok.t
+test-prereq-prereq_ok.t
