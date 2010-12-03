@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Debug.pm,v 1.46 2010-12-01 18:14:54 dpchrist Exp $
+# $Id: Debug.pm,v 1.47 2010-12-03 05:13:48 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -35,7 +35,7 @@ our @EXPORT = qw(
 
 our @ISA = qw(Exporter);
 
-our $VERSION = sprintf("%d.%03d", q$Revision: 1.46 $ =~ /(\d+)/g);
+our $VERSION = sprintf("%d.%03d", q$Revision: 1.47 $ =~ /(\d+)/g);
 
 #######################################################################
 
@@ -46,7 +46,7 @@ Dpchrist::Debug - debugging convenience routines
 
 =head1 DESCRIPTION
 
-This documentation describes module revision $Revision: 1.46 $.
+This documentation describes module revision $Revision: 1.47 $.
 
 
 This is alpha test level software
@@ -226,8 +226,6 @@ All of the subroutines may be imported by using the ':all' tag:
 
     use Dpchrist::Debug		qw( :all );
 
-See 'perldoc Export' for everything in between.
-
 
 =head1 INSTALLATION
 
@@ -245,13 +243,6 @@ Minimal:
 Complete:
 
     $ cpan Bundle::Dpchrist
-
-The following warning may be safely ignored:
-
-    Can't locate Dpchrist/Module/MakefilePL.pm in @INC (@INC contains: /
-    etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /us
-    r/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10
-    /usr/local/lib/site_perl .) at Makefile.PL line 22.
 
 
 =head2 PREREQUISITES
