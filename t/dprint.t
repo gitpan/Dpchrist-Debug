@@ -1,20 +1,20 @@
-# $Id: dprint.t,v 1.13 2010-12-01 18:14:54 dpchrist Exp $
-
-use Test::More		tests => 6;
+# $Id: dprint.t,v 1.15 2010-12-20 06:05:19 dpchrist Exp $
 
 use strict;
 use warnings;
 
+use Test::More			tests => 6;
+
+use Dpchrist::Debug		qw( dprint );
+
 use Capture::Tiny		qw( capture );
 use Carp;
 use Data::Dumper;
-use Dpchrist::Debug		qw( :all );
 use File::Basename;
 use File::Slurp;
 
-$Data::Dumper::Sortkeys = 1;
-
-$| = 1;
+$|				= 1;
+$Data::Dumper::Sortkeys		= 1;
 
 my $f;
 my $g;
@@ -43,8 +43,8 @@ ok(								#     1
 		     [qw(*r   @   stdout   stderr)]),
 );
 
-$f = join '~', __FILE__, __LINE__, 'tmp';
-$g = join '~', __FILE__, __LINE__, 'tmp';
+$f = join '~', basename(__FILE__), __LINE__, 'tmp';
+$g = join '~', basename(__FILE__), __LINE__, 'tmp';
 
 if (-e $f) { unlink $f or die $! }
 if (-e $g) { unlink $g or die $! }

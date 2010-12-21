@@ -1,24 +1,21 @@
-# $Id: debug_dest.t,v 1.18 2010-12-01 18:14:54 dpchrist Exp $
-
-use Test::More			tests => 13;
+# $Id: debug_dest.t,v 1.20 2010-12-20 06:05:19 dpchrist Exp $
 
 package Foo;
 use strict;
 use warnings;
-use Dpchrist::Debug		qw( :all );
+use Dpchrist::Debug		qw( debug_dest );
 sub foo { return debug_dest; }
 
 package Bar;
 use base qw( Foo );
 use strict;
 use warnings;
-use Dpchrist::Debug		qw( :all );
+use Dpchrist::Debug		qw( debug_dest );
 sub bar { return debug_dest; }
 
 package Baz;
 use strict;
 use warnings;
-use Dpchrist::Debug		qw( :all );
 sub baz { Bar::bar(); }
 
 package main;
@@ -26,14 +23,17 @@ package main;
 use strict;
 use warnings;
 
+use Test::More			tests => 13;
+
+use Dpchrist::Debug		qw( debug_dest );
+
 use Carp;
-use Dpchrist::Debug		qw( :all );
 use Data::Dumper;
+use File::Basename;
 use Test::More;
 
-$Data::Dumper::Sortkeys = 1;
-
-$| = 1;
+$|				= 1;
+$Data::Dumper::Sortkeys		= 1;
 
 my $r;
 
@@ -48,7 +48,7 @@ ok(								#     1
     Data::Dumper->Dump([$r, $@], [qw(r @)])
 );
 
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
 $ENV{DEBUG}		= undef;
 $r = eval { Foo::foo() };
 ok(								#     2
@@ -61,7 +61,7 @@ ok(								#     2
 );
 
 $ENV{FOO__DEBUG}	= undef;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Foo::foo() };
 ok(								#     3
     defined $r
@@ -72,8 +72,8 @@ ok(								#     3
     Data::Dumper->Dump([$r, $@], [qw(r @)])
 );
 
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Foo::foo() };
 ok(								#     4
     defined $r
@@ -98,7 +98,7 @@ ok(								#     5
 
 $ENV{BAR__DEBUG}	= undef;
 $ENV{FOO__DEBUG}	= undef;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Bar::bar() };
 ok(								#     6
     defined $r
@@ -111,8 +111,8 @@ ok(								#     6
 );
 
 $ENV{BAR__DEBUG}	= undef;
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Bar::bar() };
 ok(								#     7
     defined $r
@@ -124,9 +124,9 @@ ok(								#     7
     Data::Dumper->Dump([$r, $@], [qw(r @)])
 );
 
-$ENV{BAR__DEBUG}	= __FILE__ . __LINE__;
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{BAR__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Bar::bar() };
 ok(								#     8
     defined $r
@@ -153,7 +153,7 @@ ok(								#     9
 $ENV{BAR__DEBUG}	= undef;
 $ENV{FOO__DEBUG}	= undef;
 $ENV{BAZ__DEBUG}	= undef;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Baz::baz() };
 ok(								#    10
     defined $r
@@ -167,8 +167,8 @@ ok(								#    10
 
 $ENV{BAR__DEBUG}	= undef;
 $ENV{FOO__DEBUG}	= undef;
-$ENV{BAZ__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{BAZ__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Baz::baz() };
 ok(								#    11
     defined $r
@@ -181,9 +181,9 @@ ok(								#    11
 );
 
 $ENV{BAR__DEBUG}	= undef;
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
-$ENV{BAZ__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{BAZ__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Baz::baz() };
 ok(								#    12
     defined $r
@@ -195,10 +195,10 @@ ok(								#    12
     Data::Dumper->Dump([$r, $@], [qw(r @)])
 );
 
-$ENV{BAR__DEBUG}	= __FILE__ . __LINE__;
-$ENV{FOO__DEBUG}	= __FILE__ . __LINE__;
-$ENV{BAZ__DEBUG}	= __FILE__ . __LINE__;
-$ENV{DEBUG}		= __FILE__ . __LINE__;
+$ENV{BAR__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{FOO__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{BAZ__DEBUG}	= basename(__FILE__) . __LINE__;
+$ENV{DEBUG}		= basename(__FILE__) . __LINE__;
 $r = eval { Baz::baz() };
 ok(								#    13
     defined $r
